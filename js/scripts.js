@@ -23,26 +23,14 @@ Address.prototype.fullAddress = function() {
 // user interface logic
 $(document).ready(function() {
   $("#add-address").click(function() {
-   $("#new-addresses").append('<div class="new-address-two">' +
+   $("#new-addresses").append('<div class="new-address">' +
+                              '<div class="new-address-two">' +
                               '<div id="appended-address">' +
-                               '<div class="radio">' +
-                                 '<label>' +
-                                 '<input type="radio" name="address" value="home" checked>' +
-                                "Home" +
-                                '</label>' +
-                               '</div>' +
-                               '<div class="radio">' +
-                                 '<label>' +
-                                   '<input type="radio" name="address" value="work">' +
-                                   "Work" +
-                                 '</label>' +
-                               '</div>' +
-                               '<div class="radio">' +
-                                 '<label>' +
-                                   '<input type="radio" name="address" value="other">' +
-                                   "Other" +
-                                 '</label>' +
-                               '</div>' +
+                              '<select class="form-control" id="type">' +
+                                '<option>Home</option>' +
+                                '<option>Work</option>' +
+                                '<option>Other</option>' +
+                              '</select>' +
                                 '<div class="form-group">' +
                                   '<label for="new-street">Street</label>' +
                                   '<input type="text" class="form-control new-street">' +
@@ -54,7 +42,7 @@ $(document).ready(function() {
                                 '<div class="form-group">' +
                                   '<label for="new-state">State</label>' +
                                   '<input type="text" class="form-control new-state">' +
-
+                                '</div>' +
                                 '</div>' +
                                 '</div>' +
                               '</div>');
@@ -75,7 +63,7 @@ $(document).ready(function() {
     var newContact = new Contact(inputtedFirstName, inputtedLastName);
     $(".new-address-two").not(document.getElementById("appended-address")).css("display", "none");
     $(".new-address").each(function() {
-      var inputtedType = $(this).find("input:radio[name=address]:checked").val();
+      var inputtedType = $(this).find("select#type").val();
       var inputtedStreet = $(this).find("input.new-street").val();
       var inputtedCity = $(this).find("input.new-city").val();
       var inputtedState = $(this).find("input.new-state").val();
